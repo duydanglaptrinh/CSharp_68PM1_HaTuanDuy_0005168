@@ -1,0 +1,10 @@
+D:\C# Winform\WindownForm 01\WindownForm 01\bin\Debug\WindownForm 01.exe.config
+D:\C# Winform\WindownForm 01\WindownForm 01\bin\Debug\WindownForm 01.exe
+D:\C# Winform\WindownForm 01\WindownForm 01\bin\Debug\WindownForm 01.pdb
+D:\C# Winform\WindownForm 01\WindownForm 01\obj\Debug\WindownForm 01.csproj.AssemblyReference.cache
+D:\C# Winform\WindownForm 01\WindownForm 01\obj\Debug\WindownForm_01.Form1.resources
+D:\C# Winform\WindownForm 01\WindownForm 01\obj\Debug\WindownForm_01.Properties.Resources.resources
+D:\C# Winform\WindownForm 01\WindownForm 01\obj\Debug\WindownForm 01.csproj.GenerateResource.cache
+D:\C# Winform\WindownForm 01\WindownForm 01\obj\Debug\WindownForm 01.csproj.CoreCompileInputs.cache
+D:\C# Winform\WindownForm 01\WindownForm 01\obj\Debug\WindownForm 01.exe
+D:\C# Winform\WindownForm 01\WindownForm 01\obj\Debug\WindownForm 01.pdb
