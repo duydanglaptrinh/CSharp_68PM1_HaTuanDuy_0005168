@@ -22,3 +22,17 @@ D:\C#\WindowsFormApp\WindowsFormsApp01\obj\Debug\WindowsFormsApp01.QLSinhVien.re
 D:\C#\WindowsFormApp\WindowsFormsApp01\obj\Debug\WindowsFormsApp01.Login.resources
 D:\C#\WindowsFormApp\WindowsFormsApp01\obj\Debug\WindowsFormsApp01.UC_QLSV.resources
 D:\C#\WindowsFormApp\WindowsFormsApp01\obj\Debug\WindowsFormsApp01.UC_QLLH.resources
+C:\Users\Owner\source\repos\duydanglaptrinh\CSharp_68PM1_HaTuanDuy_0005168\WindowsFormsApp01\bin\Debug\WindowsFormsApp01.exe.config
+C:\Users\Owner\source\repos\duydanglaptrinh\CSharp_68PM1_HaTuanDuy_0005168\WindowsFormsApp01\bin\Debug\WindowsFormsApp01.exe
+C:\Users\Owner\source\repos\duydanglaptrinh\CSharp_68PM1_HaTuanDuy_0005168\WindowsFormsApp01\bin\Debug\WindowsFormsApp01.pdb
+C:\Users\Owner\source\repos\duydanglaptrinh\CSharp_68PM1_HaTuanDuy_0005168\WindowsFormsApp01\obj\Debug\WindowsFormsApp01.csproj.AssemblyReference.cache
+C:\Users\Owner\source\repos\duydanglaptrinh\CSharp_68PM1_HaTuanDuy_0005168\WindowsFormsApp01\obj\Debug\WindowsFormsApp01.Login.resources
+C:\Users\Owner\source\repos\duydanglaptrinh\CSharp_68PM1_HaTuanDuy_0005168\WindowsFormsApp01\obj\Debug\WindowsFormsApp01.Main.resources
+C:\Users\Owner\source\repos\duydanglaptrinh\CSharp_68PM1_HaTuanDuy_0005168\WindowsFormsApp01\obj\Debug\WindowsFormsApp01.Properties.Resources.resources
+C:\Users\Owner\source\repos\duydanglaptrinh\CSharp_68PM1_HaTuanDuy_0005168\WindowsFormsApp01\obj\Debug\WindowsFormsApp01.QLSinhVien.resources
+C:\Users\Owner\source\repos\duydanglaptrinh\CSharp_68PM1_HaTuanDuy_0005168\WindowsFormsApp01\obj\Debug\WindowsFormsApp01.UC_QLLH.resources
+C:\Users\Owner\source\repos\duydanglaptrinh\CSharp_68PM1_HaTuanDuy_0005168\WindowsFormsApp01\obj\Debug\WindowsFormsApp01.UC_QLSV.resources
+C:\Users\Owner\source\repos\duydanglaptrinh\CSharp_68PM1_HaTuanDuy_0005168\WindowsFormsApp01\obj\Debug\WindowsFormsApp01.csproj.GenerateResource.cache
+C:\Users\Owner\source\repos\duydanglaptrinh\CSharp_68PM1_HaTuanDuy_0005168\WindowsFormsApp01\obj\Debug\WindowsFormsApp01.csproj.CoreCompileInputs.cache
+C:\Users\Owner\source\repos\duydanglaptrinh\CSharp_68PM1_HaTuanDuy_0005168\WindowsFormsApp01\obj\Debug\WindowsFormsApp01.exe
+C:\Users\Owner\source\repos\duydanglaptrinh\CSharp_68PM1_HaTuanDuy_0005168\WindowsFormsApp01\obj\Debug\WindowsFormsApp01.pdb
