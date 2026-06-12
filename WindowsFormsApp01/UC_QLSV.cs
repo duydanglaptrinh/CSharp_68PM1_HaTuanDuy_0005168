@@ -11,14 +11,11 @@ namespace WindowsFormsApp01
     {
         QLsinhvienDataContext db = new QLsinhvienDataContext();
 
-        // Biến Phân trang & Tìm kiếm
         private int pageSize = 10;
         private int currentPage = 1;
         private int totalPages = 1;
         private int totalRecords = 0;
         private string searchKeyword = "";
-
-        // Biến Sắp xếp (Sort)
         private string sortColumn = "MSSV";
         private bool isAscending = true;
 
@@ -31,15 +28,14 @@ namespace WindowsFormsApp01
         {
             try
             {
-                // Gọi hàm làm đẹp giao diện ngay khi load Form
                 FormatUI();
 
                 dgvSinhVien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dgvSinhVien.ReadOnly = true;
-                dtpNgaySinh.Format = DateTimePickerFormat.Custom;
-                dtpNgaySinh.CustomFormat = "dd/MM/yyyy";
 
-                // Tự động gán sự kiện click vào tiêu đề cột để sắp xếp
+                // Tự động xóa bôi xanh dòng đầu tiên mỗi khi bảng tải xong dữ liệu hoặc Làm mới
+                dgvSinhVien.DataBindingComplete += (s, ev) => dgvSinhVien.ClearSelection();
+
                 dgvSinhVien.ColumnHeaderMouseClick += dgvSinhVien_ColumnHeaderMouseClick;
 
                 LoadLopHoc();
@@ -51,12 +47,8 @@ namespace WindowsFormsApp01
             }
         }
 
-
         private void FormatUI()
         {
-            // ĐÃ XÓA DÒNG `this.Font` GÂY VỠ LAYOUT
-
-            // Làm mịn DataGridView
             dgvSinhVien.BorderStyle = BorderStyle.None;
             dgvSinhVien.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 247, 250);
             dgvSinhVien.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -65,10 +57,8 @@ namespace WindowsFormsApp01
             dgvSinhVien.BackgroundColor = Color.White;
             dgvSinhVien.RowTemplate.Height = 35;
 
-            // Cấp font chữ hiện đại ĐỘC LẬP cho cái bảng (không ảnh hưởng tới các thành phần khác)
             dgvSinhVien.DefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Regular);
 
-            // Chỉnh Header của bảng
             dgvSinhVien.EnableHeadersVisualStyles = false;
             dgvSinhVien.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dgvSinhVien.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 62, 80);
@@ -76,14 +66,12 @@ namespace WindowsFormsApp01
             dgvSinhVien.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             dgvSinhVien.ColumnHeadersHeight = 40;
 
-            // Phủ màu mới cho các nút bấm
             FormatButton(btn_add, Color.FromArgb(46, 204, 113));
             FormatButton(btn_edit, Color.FromArgb(243, 156, 18));
             FormatButton(btn_delete, Color.FromArgb(231, 76, 60));
             FormatButton(btn_clear, Color.FromArgb(149, 165, 166));
             FormatButton(btn_search, Color.FromArgb(52, 73, 94));
 
-            // Gọt lại ô nhập ngày sinh
             dtpNgaySinh.Format = DateTimePickerFormat.Custom;
             dtpNgaySinh.CustomFormat = "dd/MM/yyyy";
         }
@@ -98,12 +86,10 @@ namespace WindowsFormsApp01
             btn.Cursor = Cursors.Hand;
         }
 
-      
         public void LoadData()
         {
             var query = db.Students.AsQueryable();
 
-            // 1. LỌC: Tìm kiếm
             if (!string.IsNullOrEmpty(searchKeyword))
             {
                 query = query.Where(s => s.MSSV.Contains(searchKeyword) ||
@@ -111,7 +97,6 @@ namespace WindowsFormsApp01
                                          s.ClassId.Contains(searchKeyword));
             }
 
-            // 2. SẮP XẾP: Áp dụng cột và chiều sắp xếp
             switch (sortColumn)
             {
                 case "MSSV":
@@ -134,7 +119,6 @@ namespace WindowsFormsApp01
                     break;
             }
 
-            // 3. PHÂN TRANG: Tính số trang
             totalRecords = query.Count();
             totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
 
@@ -156,12 +140,13 @@ namespace WindowsFormsApp01
 
         public void LoadLopHoc()
         {
+            // Làm mới ngữ cảnh dữ liệu để quét được các lớp học mới thêm từ tab bên cạnh
+            db = new QLsinhvienDataContext();
             cbxLopHoc.DataSource = db.Classes.ToList();
             cbxLopHoc.DisplayMember = "ClassName";
             cbxLopHoc.ValueMember = "ClassId";
         }
 
-      
         private void dgvSinhVien_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             string clickedColumn = dgvSinhVien.Columns[e.ColumnIndex].Name;
@@ -180,8 +165,6 @@ namespace WindowsFormsApp01
             LoadData();
         }
 
-        
-     
         private void dgvSinhVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -206,13 +189,20 @@ namespace WindowsFormsApp01
         {
             if (string.IsNullOrEmpty(txt_mssv.Text))
             {
-                MessageBox.Show("Vui lòng nhập MSSV!", "Cảnh báo");
+                MessageBox.Show("Vui lòng nhập MSSV!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // FIX RÀNG BUỘC: Kiểm tra xem ô chọn lớp học có dữ liệu được chọn hay chưa
+            if (cbxLopHoc.SelectedValue == null)
+            {
+                MessageBox.Show("Vui lòng chọn Lớp học! Nếu hệ thống chưa có lớp, bạn hãy sang tab Quản lý Lớp học để tạo lớp trước nhé.", "Cảnh báo dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (db.Students.Any(s => s.MSSV == txt_mssv.Text))
             {
-                MessageBox.Show("Mã số sinh viên này đã tồn tại!", "Lỗi");
+                MessageBox.Show("Mã số sinh viên này đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -229,7 +219,7 @@ namespace WindowsFormsApp01
             {
                 db.Students.InsertOnSubmit(sv);
                 db.SubmitChanges();
-                MessageBox.Show("Thêm thành công!");
+                MessageBox.Show("Thêm sinh viên thành công!", "Thành công");
                 btn_clear_Click(sender, e);
             }
             catch (Exception ex)
@@ -266,10 +256,6 @@ namespace WindowsFormsApp01
                     MessageBox.Show("Lỗi cập nhật: " + ex.Message, "Lỗi hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
-            {
-                MessageBox.Show("Không tìm thấy sinh viên này trong cơ sở dữ liệu!", "Lỗi");
-            }
         }
 
         private void btn_delete_Click(object sender, EventArgs e)
@@ -301,10 +287,6 @@ namespace WindowsFormsApp01
                     }
                 }
             }
-            else
-            {
-                MessageBox.Show("Không tìm thấy sinh viên này trong cơ sở dữ liệu!", "Lỗi");
-            }
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
@@ -323,7 +305,6 @@ namespace WindowsFormsApp01
             LoadData();
         }
 
-     
         private void btn_search_Click(object sender, EventArgs e)
         {
             searchKeyword = textBox1.Text.Trim();

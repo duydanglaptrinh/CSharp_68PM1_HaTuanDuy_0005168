@@ -24,8 +24,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtMaLop = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtMaID = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.btn_add = new System.Windows.Forms.Button();
             this.btn_edit = new System.Windows.Forms.Button();
             this.btn_delete = new System.Windows.Forms.Button();
@@ -46,7 +44,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.groupBox1.Controls.Add(this.txtGhiChu);
@@ -55,8 +53,6 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtMaLop);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtMaID);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.groupBox1.Location = new System.Drawing.Point(16, 13);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -70,7 +66,7 @@
             // txtGhiChu
             // 
             this.txtGhiChu.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtGhiChu.Location = new System.Drawing.Point(20, 235);
+            this.txtGhiChu.Location = new System.Drawing.Point(20, 175);
             this.txtGhiChu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtGhiChu.Name = "txtGhiChu";
             this.txtGhiChu.Size = new System.Drawing.Size(304, 27);
@@ -80,7 +76,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label4.Location = new System.Drawing.Point(16, 204);
+            this.label4.Location = new System.Drawing.Point(16, 155);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 20);
             this.label4.TabIndex = 6;
@@ -89,7 +85,7 @@
             // txtTenLop
             // 
             this.txtTenLop.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtTenLop.Location = new System.Drawing.Point(20, 175);
+            this.txtTenLop.Location = new System.Drawing.Point(20, 115);
             this.txtTenLop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTenLop.Name = "txtTenLop";
             this.txtTenLop.Size = new System.Drawing.Size(304, 27);
@@ -99,7 +95,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label3.Location = new System.Drawing.Point(20, 155);
+            this.label3.Location = new System.Drawing.Point(20, 95);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 20);
             this.label3.TabIndex = 4;
@@ -108,7 +104,7 @@
             // txtMaLop
             // 
             this.txtMaLop.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtMaLop.Location = new System.Drawing.Point(20, 115);
+            this.txtMaLop.Location = new System.Drawing.Point(20, 55);
             this.txtMaLop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtMaLop.Name = "txtMaLop";
             this.txtMaLop.Size = new System.Drawing.Size(304, 27);
@@ -118,30 +114,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label2.Location = new System.Drawing.Point(20, 95);
+            this.label2.Location = new System.Drawing.Point(20, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Mã lớp:";
-            // 
-            // txtMaID
-            // 
-            this.txtMaID.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtMaID.Location = new System.Drawing.Point(20, 55);
-            this.txtMaID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtMaID.Name = "txtMaID";
-            this.txtMaID.Size = new System.Drawing.Size(304, 27);
-            this.txtMaID.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label1.Location = new System.Drawing.Point(20, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã ID:";
             // 
             // btn_add
             // 
@@ -156,7 +133,6 @@
             this.btn_add.TabIndex = 1;
             this.btn_add.Text = "Thêm";
             this.btn_add.UseVisualStyleBackColor = false;
-            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // btn_edit
             // 
@@ -248,8 +224,8 @@
             // dgvLopHoc
             // 
             this.dgvLopHoc.AllowUserToAddRows = false;
-            this.dgvLopHoc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvLopHoc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvLopHoc.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvLopHoc.BackgroundColor = System.Drawing.Color.White;
@@ -262,7 +238,6 @@
             this.dgvLopHoc.RowTemplate.Height = 29;
             this.dgvLopHoc.Size = new System.Drawing.Size(581, 421);
             this.dgvLopHoc.TabIndex = 9;
-            this.dgvLopHoc.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLopHoc_CellContentClick);
             // 
             // button9
             // 
@@ -341,7 +316,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UC_QLLH";
             this.Size = new System.Drawing.Size(1030, 557);
-            this.Load += new System.EventHandler(this.UC_QLLH_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLopHoc)).EndInit();
@@ -359,8 +333,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtMaLop;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtMaID;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_add;
         private System.Windows.Forms.Button btn_edit;
         private System.Windows.Forms.Button btn_delete;
@@ -376,5 +348,4 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button6;
     }
-
 }

@@ -6,21 +6,17 @@ namespace WindowsFormsApp01
 {
     public partial class Main : Form
     {
-        // Khởi tạo sẵn 2 UserControl
         private UC_QLLH uc_qllh = new UC_QLLH();
         private UC_QLSV uc_qlsv = new UC_QLSV();
 
-        // Biến cục bộ dùng để lưu trữ Form Login đang ẩn
         private Form loginForm;
-        private bool isLoggingOut = false; // Cờ kiểm soát việc văng phần mềm
+        private bool isLoggingOut = false;
 
-        // 1. Hàm khởi tạo mặc định (BẮT BUỘC phải giữ lại để file Designer.cs không bị lỗi Build)
         public Main()
         {
             InitializeComponent();
         }
 
-        // 2. Hàm khởi tạo mở rộng: Nhận Form Login truyền vào để xử lý Đăng xuất mượt mà
         public Main(Form login) : this()
         {
             this.loginForm = login;
@@ -28,7 +24,6 @@ namespace WindowsFormsApp01
 
         private void Main_Load(object sender, EventArgs e)
         {
-            // Vừa mở lên thì nạp ngay màn hình sinh viên
             ShowUserControl(uc_qlsv);
         }
 
@@ -47,6 +42,9 @@ namespace WindowsFormsApp01
 
         private void btnQLSV_Click(object sender, EventArgs e)
         {
+            // FIX ĐỒNG BỘ: Ép ô chọn lớp học bên tab sinh viên tải lại danh sách mới nhất từ DB
+            uc_qlsv.LoadLopHoc();
+
             ShowUserControl(uc_qlsv);
             DoiTrangThaiNut(btnQLSV);
         }
@@ -55,26 +53,24 @@ namespace WindowsFormsApp01
         {
             if (MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                isLoggingOut = true; // Báo cho hệ thống biết là đang đăng xuất một cách chủ động
+                isLoggingOut = true;
                 if (loginForm != null)
                 {
-                    loginForm.Show(); // Gọi Form Login đang ẩn hiện lên lại
+                    loginForm.Show();
                 }
-                this.Close(); // Đóng form Main
+                this.Close();
             }
         }
 
-        // FIX LỖI ỨNG DỤNG BỊ TREO NGẦM: Nếu tắt app bằng dấu X thì ép giải phóng toàn bộ!
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
             base.OnFormClosed(e);
             if (!isLoggingOut)
             {
-                Application.Exit(); // Dọn dẹp sạch sẽ toàn bộ tiến trình ngầm
+                Application.Exit();
             }
         }
 
-        // Đổi Font chữ bôi đậm thanh menu điều hướng
         private void DoiTrangThaiNut(Button activeBtn)
         {
             btnQLSV.Font = new Font("Segoe UI", 10F, FontStyle.Regular);

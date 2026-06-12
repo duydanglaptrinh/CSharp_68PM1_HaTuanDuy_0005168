@@ -11,47 +11,50 @@ namespace WindowsFormsApp01
     {
         QLsinhvienDataContext db = new QLsinhvienDataContext();
 
-        // Biến Phân trang & Tìm kiếm
         private int pageSize = 10;
         private int currentPage = 1;
         private int totalPages = 1;
         private int totalRecords = 0;
         private string searchKeyword = "";
 
-        // Biến Sắp xếp (Sort)
         private string sortColumn = "ClassId";
         private bool isAscending = true;
 
         public UC_QLLH()
         {
             InitializeComponent();
+            this.Load += UC_QLLH_Load;
         }
 
         private void UC_QLLH_Load(object sender, EventArgs e)
         {
             try
             {
-                // Gọi hàm làm đẹp giao diện
                 FormatUI();
 
                 dgvLopHoc.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dgvLopHoc.ReadOnly = true;
+                dgvLopHoc.AutoGenerateColumns = true;
 
-                // Tự động kết nối các sự kiện cho nút bấm để không phải chỉnh trong Designer
+                dgvLopHoc.DataBindingComplete += (s, ev) => dgvLopHoc.ClearSelection();
+
+                // ĐÃ BỔ SUNG: Kết nối sự kiện cho nút Thêm
+                btn_add.Click += btn_add_Click;
                 btn_edit.Click += btn_edit_Click;
                 btn_delete.Click += btn_delete_Click;
                 btn_clear.Click += btn_clear_Click;
                 btn_search.Click += btn_search_Click;
+                btn_view_list.Click += btn_view_list_Click;
 
-                // Nối sự kiện phân trang
                 button6.Click += btn_head_Click;
                 button7.Click += button7_Click;
                 button8.Click += button8_Click;
                 button9.Click += btn_tail_Click;
 
-                // Nối sự kiện click bảng và sắp xếp
                 dgvLopHoc.CellClick += dgvLopHoc_CellClick;
                 dgvLopHoc.ColumnHeaderMouseClick += dgvLopHoc_ColumnHeaderMouseClick;
+
+                labelTimKiem.Text = "Tìm kiếm (Mã lớp / Tên lớp):";
 
                 LoadData();
             }
@@ -61,9 +64,6 @@ namespace WindowsFormsApp01
             }
         }
 
-        // =========================================================
-        // CODE LÀM ĐẸP GIAO DIỆN (UI/UX)
-        // =========================================================
         private void FormatUI()
         {
             dgvLopHoc.BorderStyle = BorderStyle.None;
@@ -101,21 +101,74 @@ namespace WindowsFormsApp01
             btn.Cursor = Cursors.Hand;
         }
 
-        // =========================================================
-        // TẢI DỮ LIỆU, TÌM KIẾM, SẮP XẾP, PHÂN TRANG
-        // =========================================================
+        private void btn_view_list_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtMaLop.Text))
+            {
+                MessageBox.Show("Vui lòng click chọn một lớp học trong bảng để xem danh sách sinh viên!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string maLop = txtMaLop.Text;
+            string tenLop = txtTenLop.Text;
+
+            var danhSachSV = db.Students.Where(s => s.ClassId == maLop).ToList();
+
+            if (danhSachSV.Count == 0)
+            {
+                MessageBox.Show($"[{tenLop}] hiện tại chưa có sinh viên nào!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            Form popupForm = new Form();
+            popupForm.Text = $"Danh sách sinh viên - {tenLop} ({maLop})";
+            popupForm.Size = new Size(800, 450);
+            popupForm.StartPosition = FormStartPosition.CenterParent;
+            popupForm.Font = new Font("Segoe UI", 10F, FontStyle.Regular);
+            popupForm.BackColor = Color.White;
+            popupForm.ShowIcon = false;
+
+            DataGridView dgvPopUp = new DataGridView();
+            dgvPopUp.Dock = DockStyle.Fill;
+
+            dgvPopUp.DataSource = danhSachSV;
+            dgvPopUp.ReadOnly = true;
+            dgvPopUp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvPopUp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvPopUp.BackgroundColor = Color.White;
+            dgvPopUp.BorderStyle = BorderStyle.None;
+
+            dgvPopUp.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 247, 250);
+            dgvPopUp.EnableHeadersVisualStyles = false;
+            dgvPopUp.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvPopUp.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 62, 80);
+            dgvPopUp.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvPopUp.ColumnHeadersHeight = 40;
+            dgvPopUp.RowTemplate.Height = 35;
+
+            if (dgvPopUp.Columns["MSSV"] != null) dgvPopUp.Columns["MSSV"].HeaderText = "Mã SV";
+            if (dgvPopUp.Columns["FullName"] != null) dgvPopUp.Columns["FullName"].HeaderText = "Họ và Tên";
+            if (dgvPopUp.Columns["DateOfBirth"] != null) dgvPopUp.Columns["DateOfBirth"].HeaderText = "Ngày Sinh";
+            if (dgvPopUp.Columns["Gender"] != null) dgvPopUp.Columns["Gender"].HeaderText = "Giới Tính";
+            if (dgvPopUp.Columns["ClassId"] != null) dgvPopUp.Columns["ClassId"].Visible = false;
+            if (dgvPopUp.Columns["Class"] != null) dgvPopUp.Columns["Class"].Visible = false;
+
+            dgvPopUp.DataBindingComplete += (s, ev) => dgvPopUp.ClearSelection();
+
+            popupForm.Controls.Add(dgvPopUp);
+            popupForm.ShowDialog();
+        }
+
         public void LoadData()
         {
             var query = db.Classes.AsQueryable();
 
-            // 1. LỌC: Tìm kiếm theo Mã lớp hoặc Tên lớp
             if (!string.IsNullOrEmpty(searchKeyword))
             {
                 query = query.Where(c => c.ClassId.Contains(searchKeyword) ||
                                          c.ClassName.Contains(searchKeyword));
             }
 
-            // 2. SẮP XẾP
             switch (sortColumn)
             {
                 case "ClassId":
@@ -132,7 +185,6 @@ namespace WindowsFormsApp01
                     break;
             }
 
-            // 3. PHÂN TRANG
             totalRecords = query.Count();
             totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
 
@@ -142,14 +194,18 @@ namespace WindowsFormsApp01
 
             var dsLopHoc = query.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
 
+            dgvLopHoc.DataSource = null;
             dgvLopHoc.DataSource = dsLopHoc;
+
+            if (dgvLopHoc.Columns["ClassId"] != null) dgvLopHoc.Columns["ClassId"].HeaderText = "Mã Lớp";
+            if (dgvLopHoc.Columns["ClassName"] != null) dgvLopHoc.Columns["ClassName"].HeaderText = "Tên Lớp";
+            if (dgvLopHoc.Columns["Note"] != null) dgvLopHoc.Columns["Note"].HeaderText = "Ghi Chú";
+
+            if (dgvLopHoc.Columns["Students"] != null) dgvLopHoc.Columns["Students"].Visible = false;
 
             label5.Text = $"Trang {currentPage}/{totalPages} | {totalRecords} bản ghi";
         }
 
-        // =========================================================
-        // SỰ KIỆN CLICK SẮP XẾP VÀ CHỌN LỚP
-        // =========================================================
         private void dgvLopHoc_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             string clickedColumn = dgvLopHoc.Columns[e.ColumnIndex].Name;
@@ -178,15 +234,12 @@ namespace WindowsFormsApp01
                 txtTenLop.Text = row.Cells["ClassName"].Value?.ToString();
                 txtGhiChu.Text = row.Cells["Note"].Value?.ToString();
 
-                txtMaLop.Enabled = false; // Khóa mã lớp khi đang chọn để sửa/xóa
+                txtMaLop.Enabled = false;
             }
         }
 
         private void dgvLopHoc_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
 
-        // =========================================================
-        // CRUD: THÊM, SỬA, XÓA, LÀM MỚI
-        // =========================================================
         private void btn_add_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtMaLop.Text) || string.IsNullOrEmpty(txtTenLop.Text))
@@ -296,9 +349,6 @@ namespace WindowsFormsApp01
             LoadData();
         }
 
-        // =========================================================
-        // TÌM KIẾM & CHUYỂN TRANG
-        // =========================================================
         private void btn_search_Click(object sender, EventArgs e)
         {
             searchKeyword = txtTimKiem.Text.Trim();
