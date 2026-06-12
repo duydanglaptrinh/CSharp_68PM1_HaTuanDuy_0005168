@@ -10,10 +10,20 @@ namespace WindowsFormsApp01
         private UC_QLLH uc_qllh = new UC_QLLH();
         private UC_QLSV uc_qlsv = new UC_QLSV();
 
+        // Biến cục bộ dùng để lưu trữ Form Login đang ẩn
+        private Form loginForm;
+        private bool isLoggingOut = false; // Cờ kiểm soát việc văng phần mềm
+
+        // 1. Hàm khởi tạo mặc định (BẮT BUỘC phải giữ lại để file Designer.cs không bị lỗi Build)
         public Main()
         {
-            // Lệnh này bắt buộc phải gọi để nó nạp đoạn code trong Designer.cs lên màn hình
             InitializeComponent();
+        }
+
+        // 2. Hàm khởi tạo mở rộng: Nhận Form Login truyền vào để xử lý Đăng xuất mượt mà
+        public Main(Form login) : this()
+        {
+            this.loginForm = login;
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -22,7 +32,6 @@ namespace WindowsFormsApp01
             ShowUserControl(uc_qlsv);
         }
 
-        
         private void ShowUserControl(UserControl uc)
         {
             panelContainer.Controls.Clear();
@@ -46,11 +55,26 @@ namespace WindowsFormsApp01
         {
             if (MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                this.Close();
+                isLoggingOut = true; // Báo cho hệ thống biết là đang đăng xuất một cách chủ động
+                if (loginForm != null)
+                {
+                    loginForm.Show(); // Gọi Form Login đang ẩn hiện lên lại
+                }
+                this.Close(); // Đóng form Main
             }
         }
 
-        // Đổi Font chữ bôi đậm
+        // FIX LỖI ỨNG DỤNG BỊ TREO NGẦM: Nếu tắt app bằng dấu X thì ép giải phóng toàn bộ!
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            base.OnFormClosed(e);
+            if (!isLoggingOut)
+            {
+                Application.Exit(); // Dọn dẹp sạch sẽ toàn bộ tiến trình ngầm
+            }
+        }
+
+        // Đổi Font chữ bôi đậm thanh menu điều hướng
         private void DoiTrangThaiNut(Button activeBtn)
         {
             btnQLSV.Font = new Font("Segoe UI", 10F, FontStyle.Regular);

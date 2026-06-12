@@ -3,38 +3,136 @@
   "WorkspaceRootPath": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\uc_qlsv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|solutionrelative:uc_qlsv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|c:\\users\\owner\\source\\repos\\duydanglaptrinh\\csharp_68pm1_hatuanduy_0005168\\windowsformsapp01\\uc_qllh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|solutionrelative:uc_qllh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|c:\\users\\owner\\source\\repos\\duydanglaptrinh\\csharp_68pm1_hatuanduy_0005168\\windowsformsapp01\\uc_qlsv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|c:\\users\\owner\\source\\repos\\duydanglaptrinh\\csharp_68pm1_hatuanduy_0005168\\windowsformsapp01\\uc_qllh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|solutionrelative:uc_qllh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\uc_qlsv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|solutionrelative:uc_qlsv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|c:\\users\\owner\\source\\repos\\duydanglaptrinh\\csharp_68pm1_hatuanduy_0005168\\windowsformsapp01\\main.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|solutionrelative:main.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|c:\\users\\owner\\source\\repos\\duydanglaptrinh\\csharp_68pm1_hatuanduy_0005168\\windowsformsapp01\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|solutionrelative:dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|c:\\users\\owner\\source\\repos\\duydanglaptrinh\\csharp_68pm1_hatuanduy_0005168\\windowsformsapp01\\uc_qlsv.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\main.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|solutionrelative:main.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|solutionrelative:login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\uc_qlsv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|solutionrelative:uc_qlsv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\uc_qlsv.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|solutionrelative:uc_qlsv.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D65D34E5-2D74-44DD-88A3-7FF6AE55B615}|WindowsFormsApp01.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
-      "VerticalTabListWidth": 256,
+      "VerticalTabListWidth": 466,
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "UC_QLLH.cs",
+              "DocumentMoniker": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\UC_QLLH.cs",
+              "RelativeDocumentMoniker": "UC_QLLH.cs",
+              "ToolTip": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\UC_QLLH.cs",
+              "RelativeToolTip": "UC_QLLH.cs",
+              "ViewState": "AgIAADoBAAAAAAAAAAA4wFIBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T11:26:46.628Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UC_QLLH.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\UC_QLLH.cs",
+              "RelativeDocumentMoniker": "UC_QLLH.cs",
+              "ToolTip": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\UC_QLLH.cs [Design]",
+              "RelativeToolTip": "UC_QLLH.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T11:26:27.902Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Login.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\Login.Designer.cs",
+              "RelativeDocumentMoniker": "Login.Designer.cs",
+              "ToolTip": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\Login.Designer.cs",
+              "RelativeToolTip": "Login.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T11:12:43.173Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAWwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T11:07:01.365Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Login.cs",
+              "DocumentMoniker": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\Login.cs",
+              "RelativeDocumentMoniker": "Login.cs",
+              "ToolTip": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\Login.cs",
+              "RelativeToolTip": "Login.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAAwBwAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T10:58:34.766Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\DbContext.cs",
+              "RelativeDocumentMoniker": "DbContext.cs",
+              "ToolTip": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\DbContext.cs",
+              "RelativeToolTip": "DbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T10:58:09.762Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Main.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\Main.Designer.cs",
               "RelativeDocumentMoniker": "Main.Designer.cs",
@@ -42,25 +140,24 @@
               "RelativeToolTip": "Main.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-12T03:00:49.152Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-12T03:00:49.152Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "UC_QLSV.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\UC_QLSV.Designer.cs",
               "RelativeDocumentMoniker": "UC_QLSV.Designer.cs",
               "ToolTip": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\UC_QLSV.Designer.cs",
               "RelativeToolTip": "UC_QLSV.Designer.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAwIsBAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHEBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-12T01:01:43.407Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "UC_QLSV.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\UC_QLSV.cs",
               "RelativeDocumentMoniker": "UC_QLSV.cs",
@@ -72,29 +169,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 8,
               "Title": "UC_QLSV.cs",
               "DocumentMoniker": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\UC_QLSV.cs",
               "RelativeDocumentMoniker": "UC_QLSV.cs",
               "ToolTip": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\UC_QLSV.cs",
               "RelativeToolTip": "UC_QLSV.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAawEAAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-20T09:51:57.27Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Main.cs",
               "DocumentMoniker": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\Main.cs",
               "RelativeDocumentMoniker": "Main.cs",
               "ToolTip": "C:\\Users\\Owner\\source\\repos\\duydanglaptrinh\\CSharp_68PM1_HaTuanDuy_0005168\\WindowsFormsApp01\\Main.cs",
               "RelativeToolTip": "Main.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAAIwFUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-20T09:52:58.921Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-20T09:52:28.096Z"
             }
           ]
         }

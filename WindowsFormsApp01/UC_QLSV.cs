@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -17,9 +18,9 @@ namespace WindowsFormsApp01
         private int totalRecords = 0;
         private string searchKeyword = "";
 
-      
-        private string sortColumn = "MSSV"; // Cột sắp xếp mặc định
-        private bool isAscending = true;    // Chiều sắp xếp (true = Tăng, false = Giảm)
+        // Biến Sắp xếp (Sort)
+        private string sortColumn = "MSSV";
+        private bool isAscending = true;
 
         public UC_QLSV()
         {
@@ -30,8 +31,13 @@ namespace WindowsFormsApp01
         {
             try
             {
+                // Gọi hàm làm đẹp giao diện ngay khi load Form
+                FormatUI();
+
                 dgvSinhVien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dgvSinhVien.ReadOnly = true;
+                dtpNgaySinh.Format = DateTimePickerFormat.Custom;
+                dtpNgaySinh.CustomFormat = "dd/MM/yyyy";
 
                 // Tự động gán sự kiện click vào tiêu đề cột để sắp xếp
                 dgvSinhVien.ColumnHeaderMouseClick += dgvSinhVien_ColumnHeaderMouseClick;
@@ -45,6 +51,54 @@ namespace WindowsFormsApp01
             }
         }
 
+
+        private void FormatUI()
+        {
+            // ĐÃ XÓA DÒNG `this.Font` GÂY VỠ LAYOUT
+
+            // Làm mịn DataGridView
+            dgvSinhVien.BorderStyle = BorderStyle.None;
+            dgvSinhVien.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 247, 250);
+            dgvSinhVien.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvSinhVien.DefaultCellStyle.SelectionBackColor = Color.FromArgb(41, 128, 185);
+            dgvSinhVien.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgvSinhVien.BackgroundColor = Color.White;
+            dgvSinhVien.RowTemplate.Height = 35;
+
+            // Cấp font chữ hiện đại ĐỘC LẬP cho cái bảng (không ảnh hưởng tới các thành phần khác)
+            dgvSinhVien.DefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Regular);
+
+            // Chỉnh Header của bảng
+            dgvSinhVien.EnableHeadersVisualStyles = false;
+            dgvSinhVien.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvSinhVien.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 62, 80);
+            dgvSinhVien.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvSinhVien.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dgvSinhVien.ColumnHeadersHeight = 40;
+
+            // Phủ màu mới cho các nút bấm
+            FormatButton(btn_add, Color.FromArgb(46, 204, 113));
+            FormatButton(btn_edit, Color.FromArgb(243, 156, 18));
+            FormatButton(btn_delete, Color.FromArgb(231, 76, 60));
+            FormatButton(btn_clear, Color.FromArgb(149, 165, 166));
+            FormatButton(btn_search, Color.FromArgb(52, 73, 94));
+
+            // Gọt lại ô nhập ngày sinh
+            dtpNgaySinh.Format = DateTimePickerFormat.Custom;
+            dtpNgaySinh.CustomFormat = "dd/MM/yyyy";
+        }
+
+        private void FormatButton(Button btn, Color bgColor)
+        {
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0;
+            btn.BackColor = bgColor;
+            btn.ForeColor = Color.White;
+            btn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btn.Cursor = Cursors.Hand;
+        }
+
+      
         public void LoadData()
         {
             var query = db.Students.AsQueryable();
@@ -88,7 +142,6 @@ namespace WindowsFormsApp01
             if (currentPage > totalPages) currentPage = totalPages;
             if (currentPage < 1) currentPage = 1;
 
-            // Lấy dữ liệu trang hiện tại (Không cần OrderBy ở đây nữa vì đã Sort ở trên rồi)
             var dsSinhVien = query.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
 
             dgvSinhVien.DataSource = dsSinhVien;
@@ -113,22 +166,21 @@ namespace WindowsFormsApp01
         {
             string clickedColumn = dgvSinhVien.Columns[e.ColumnIndex].Name;
 
-            // Nếu click lại cột đang sắp xếp -> Đảo chiều (Từ tăng thành giảm hoặc ngược lại)
             if (sortColumn == clickedColumn)
             {
                 isAscending = !isAscending;
             }
-            else // Nếu click cột mới -> Gán cột đó và mặc định xếp tăng dần
+            else
             {
                 sortColumn = clickedColumn;
                 isAscending = true;
             }
 
-            // Khi đổi tiêu chí sắp xếp thì nên quay về trang 1
             currentPage = 1;
             LoadData();
         }
 
+        
      
         private void dgvSinhVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -150,7 +202,6 @@ namespace WindowsFormsApp01
             }
         }
 
-       
         private void btn_add_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txt_mssv.Text))
@@ -266,14 +317,13 @@ namespace WindowsFormsApp01
 
             searchKeyword = "";
             currentPage = 1;
-            // Đặt lại sắp xếp về mặc định khi làm mới
             sortColumn = "MSSV";
             isAscending = true;
 
             LoadData();
         }
 
-  
+     
         private void btn_search_Click(object sender, EventArgs e)
         {
             searchKeyword = textBox1.Text.Trim();
