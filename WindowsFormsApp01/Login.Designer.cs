@@ -38,9 +38,9 @@
             // 
             // btn_login
             // 
-            this.btn_login.Location = new System.Drawing.Point(319, 258);
+            this.btn_login.Location = new System.Drawing.Point(279, 226);
             this.btn_login.Name = "btn_login";
-            this.btn_login.Size = new System.Drawing.Size(122, 36);
+            this.btn_login.Size = new System.Drawing.Size(107, 32);
             this.btn_login.TabIndex = 0;
             this.btn_login.Text = "Đăng nhập ";
             this.btn_login.UseVisualStyleBackColor = true;
@@ -50,9 +50,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(250, 55);
+            this.label1.Location = new System.Drawing.Point(219, 48);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(277, 38);
+            this.label1.Size = new System.Drawing.Size(258, 35);
             this.label1.TabIndex = 1;
             this.label1.Text = "Quản lý sinh viên ";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -60,47 +60,50 @@
             // username
             // 
             this.username.AutoSize = true;
-            this.username.Location = new System.Drawing.Point(239, 148);
+            this.username.Location = new System.Drawing.Point(209, 130);
             this.username.Name = "username";
-            this.username.Size = new System.Drawing.Size(88, 16);
+            this.username.Size = new System.Drawing.Size(85, 14);
             this.username.TabIndex = 2;
             this.username.Text = "Tên tài khoản";
             // 
             // password
             // 
             this.password.AutoSize = true;
-            this.password.Location = new System.Drawing.Point(239, 194);
+            this.password.Location = new System.Drawing.Point(209, 170);
             this.password.Name = "password";
-            this.password.Size = new System.Drawing.Size(61, 16);
+            this.password.Size = new System.Drawing.Size(58, 14);
             this.password.TabIndex = 3;
             this.password.Text = "Mật khẩu";
             // 
             // txt_username
             // 
-            this.txt_username.Location = new System.Drawing.Point(347, 145);
+            this.txt_username.Location = new System.Drawing.Point(304, 127);
             this.txt_username.Name = "txt_username";
-            this.txt_username.Size = new System.Drawing.Size(166, 22);
+            this.txt_username.Size = new System.Drawing.Size(146, 21);
             this.txt_username.TabIndex = 4;
+            this.txt_username.Text = "0005168@st.huce.edu.vn";
+            this.txt_username.TextChanged += new System.EventHandler(this.txt_username_TextChanged);
             // 
             // txt_password
             // 
-            this.txt_password.Location = new System.Drawing.Point(347, 191);
+            this.txt_password.Location = new System.Drawing.Point(304, 167);
             this.txt_password.Name = "txt_password";
-            this.txt_password.Size = new System.Drawing.Size(166, 22);
+            this.txt_password.Size = new System.Drawing.Size(146, 21);
             this.txt_password.TabIndex = 5;
+            this.txt_password.Text = "0005168";
             // 
-            // Main
+            // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(700, 394);
             this.Controls.Add(this.txt_password);
             this.Controls.Add(this.txt_username);
             this.Controls.Add(this.password);
             this.Controls.Add(this.username);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_login);
-            this.Name = "Main";
+            this.Name = "Login";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();

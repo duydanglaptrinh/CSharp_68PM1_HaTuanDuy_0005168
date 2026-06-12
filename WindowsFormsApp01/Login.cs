@@ -20,27 +20,46 @@ namespace WindowsFormsApp01
         private void btn_login_Click(object sender, EventArgs e)
         {
 
-            String username = txt_username.Text;
-            String password = txt_password.Text;
+            string username = txt_username.Text.Trim();
+            string password = txt_password.Text.Trim();
 
-            if (username == "0003168@st.huce.edu.vn" && password == "0003168")
+            try
             {
-                MessageBox.Show("Đăng nhập thành công");
-                Form QLSinhVien  = new QLSinhVien();
-
-                // 2. Hien thi Form moi
-                QLSinhVien.Show();
-
-                // 3. An Form hien tai (Form Quan ly Sinh vien)
-                this.Hide();
+                using (var db = new QLsinhvienDataContext())
+                {
+                    // Find student by MSSV (password)
+                    var student = db.Students.SingleOrDefault(s => s.MSSV == password);
+                    if (student != null)
+                    {
+                        // Expected email for a student is MSSV@st.huce.edu.vn
+                        string expectedEmail = student.MSSV + "@st.huce.edu.vn";
+                        if (string.Equals(username, expectedEmail, StringComparison.OrdinalIgnoreCase))
+                        {
+                            MessageBox.Show("Đăng nhập thành công");
+                            Form QLSinhVien = new QLSinhVien();
+                            QLSinhVien.Show();
+                            this.Hide();
+                            return;
+                        }
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Đăng nhập thất bại");
+                // Log or handle exception as needed; show a generic error for now
+                MessageBox.Show("Lỗi khi kết nối cơ sở dữ liệu: " + ex.Message);
+                return;
             }
+
+            MessageBox.Show("Đăng nhập thất bại");
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_username_TextChanged(object sender, EventArgs e)
         {
 
         }
