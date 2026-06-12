@@ -10,11 +10,16 @@ namespace WindowsFormsApp01
     {
         QLsinhvienDataContext db = new QLsinhvienDataContext();
 
+        // Biến Phân trang & Tìm kiếm
         private int pageSize = 10;
         private int currentPage = 1;
         private int totalPages = 1;
         private int totalRecords = 0;
         private string searchKeyword = "";
+
+      
+        private string sortColumn = "MSSV"; // Cột sắp xếp mặc định
+        private bool isAscending = true;    // Chiều sắp xếp (true = Tăng, false = Giảm)
 
         public UC_QLSV()
         {
@@ -27,6 +32,9 @@ namespace WindowsFormsApp01
             {
                 dgvSinhVien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dgvSinhVien.ReadOnly = true;
+
+                // Tự động gán sự kiện click vào tiêu đề cột để sắp xếp
+                dgvSinhVien.ColumnHeaderMouseClick += dgvSinhVien_ColumnHeaderMouseClick;
 
                 LoadLopHoc();
                 LoadData();
@@ -41,6 +49,7 @@ namespace WindowsFormsApp01
         {
             var query = db.Students.AsQueryable();
 
+            // 1. LỌC: Tìm kiếm
             if (!string.IsNullOrEmpty(searchKeyword))
             {
                 query = query.Where(s => s.MSSV.Contains(searchKeyword) ||
@@ -48,6 +57,30 @@ namespace WindowsFormsApp01
                                          s.ClassId.Contains(searchKeyword));
             }
 
+            // 2. SẮP XẾP: Áp dụng cột và chiều sắp xếp
+            switch (sortColumn)
+            {
+                case "MSSV":
+                    query = isAscending ? query.OrderBy(s => s.MSSV) : query.OrderByDescending(s => s.MSSV);
+                    break;
+                case "FullName":
+                    query = isAscending ? query.OrderBy(s => s.FullName) : query.OrderByDescending(s => s.FullName);
+                    break;
+                case "DateOfBirth":
+                    query = isAscending ? query.OrderBy(s => s.DateOfBirth) : query.OrderByDescending(s => s.DateOfBirth);
+                    break;
+                case "Gender":
+                    query = isAscending ? query.OrderBy(s => s.Gender) : query.OrderByDescending(s => s.Gender);
+                    break;
+                case "ClassId":
+                    query = isAscending ? query.OrderBy(s => s.ClassId) : query.OrderByDescending(s => s.ClassId);
+                    break;
+                default:
+                    query = query.OrderBy(s => s.MSSV);
+                    break;
+            }
+
+            // 3. PHÂN TRANG: Tính số trang
             totalRecords = query.Count();
             totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
 
@@ -55,7 +88,8 @@ namespace WindowsFormsApp01
             if (currentPage > totalPages) currentPage = totalPages;
             if (currentPage < 1) currentPage = 1;
 
-            var dsSinhVien = query.OrderBy(s => s.MSSV).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+            // Lấy dữ liệu trang hiện tại (Không cần OrderBy ở đây nữa vì đã Sort ở trên rồi)
+            var dsSinhVien = query.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
 
             dgvSinhVien.DataSource = dsSinhVien;
 
@@ -74,6 +108,28 @@ namespace WindowsFormsApp01
             cbxLopHoc.ValueMember = "ClassId";
         }
 
+      
+        private void dgvSinhVien_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            string clickedColumn = dgvSinhVien.Columns[e.ColumnIndex].Name;
+
+            // Nếu click lại cột đang sắp xếp -> Đảo chiều (Từ tăng thành giảm hoặc ngược lại)
+            if (sortColumn == clickedColumn)
+            {
+                isAscending = !isAscending;
+            }
+            else // Nếu click cột mới -> Gán cột đó và mặc định xếp tăng dần
+            {
+                sortColumn = clickedColumn;
+                isAscending = true;
+            }
+
+            // Khi đổi tiêu chí sắp xếp thì nên quay về trang 1
+            currentPage = 1;
+            LoadData();
+        }
+
+     
         private void dgvSinhVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -94,6 +150,7 @@ namespace WindowsFormsApp01
             }
         }
 
+       
         private void btn_add_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txt_mssv.Text))
@@ -164,35 +221,27 @@ namespace WindowsFormsApp01
             }
         }
 
-        
-       
         private void btn_delete_Click(object sender, EventArgs e)
         {
-            // 1. Kiểm tra xem người dùng đã chọn sinh viên chưa
             if (string.IsNullOrEmpty(txt_mssv.Text))
             {
                 MessageBox.Show("Vui lòng click chọn một sinh viên trong bảng trước khi xóa!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 2. Tìm sinh viên đó trong CSDL
             var sv = db.Students.SingleOrDefault(s => s.MSSV == txt_mssv.Text);
 
             if (sv != null)
             {
-                // 3. Hiện hộp thoại cảnh báo trước khi xóa thật
                 DialogResult dialogResult = MessageBox.Show($"Bạn có chắc chắn muốn xóa sinh viên {sv.FullName} (MSSV: {sv.MSSV}) không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (dialogResult == DialogResult.Yes)
                 {
                     try
                     {
-                        // 4. Xóa cứng khỏi CSDL
                         db.Students.DeleteOnSubmit(sv);
                         db.SubmitChanges();
                         MessageBox.Show("Xóa sinh viên thành công!", "Thành công");
-
-                        // 5. Làm mới form và tải lại bảng
                         btn_clear_Click(sender, e);
                     }
                     catch (Exception ex)
@@ -206,7 +255,6 @@ namespace WindowsFormsApp01
                 MessageBox.Show("Không tìm thấy sinh viên này trong cơ sở dữ liệu!", "Lỗi");
             }
         }
-      
 
         private void btn_clear_Click(object sender, EventArgs e)
         {
@@ -218,9 +266,14 @@ namespace WindowsFormsApp01
 
             searchKeyword = "";
             currentPage = 1;
+            // Đặt lại sắp xếp về mặc định khi làm mới
+            sortColumn = "MSSV";
+            isAscending = true;
+
             LoadData();
         }
 
+  
         private void btn_search_Click(object sender, EventArgs e)
         {
             searchKeyword = textBox1.Text.Trim();
