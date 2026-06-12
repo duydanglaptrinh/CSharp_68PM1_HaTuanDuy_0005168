@@ -130,22 +130,18 @@ namespace WindowsFormsApp01
             }
         }
 
-      
         private void btn_edit_Click(object sender, EventArgs e)
         {
-            // Kiểm tra xem đã chọn sinh viên nào để sửa chưa
             if (string.IsNullOrEmpty(txt_mssv.Text))
             {
                 MessageBox.Show("Vui lòng click chọn một sinh viên trong bảng trước khi sửa!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Tìm sinh viên trong CSDL dựa vào MSSV (ô MSSV lúc này đang bị khóa mờ)
             var sv = db.Students.SingleOrDefault(s => s.MSSV == txt_mssv.Text);
 
             if (sv != null)
             {
-                // Ghi đè các thông tin mới từ giao diện vào biến sinh viên
                 sv.FullName = txt_name.Text;
                 sv.Gender = cboGioiTinh.Text;
                 sv.DateOfBirth = dtpNgaySinh.Value;
@@ -153,11 +149,8 @@ namespace WindowsFormsApp01
 
                 try
                 {
-                    // Lưu thay đổi xuống Database
                     db.SubmitChanges();
                     MessageBox.Show("Cập nhật thông tin sinh viên thành công!", "Thành công");
-
-                    // Dọn dẹp form và tải lại bảng cho mới
                     btn_clear_Click(sender, e);
                 }
                 catch (Exception ex)
@@ -171,11 +164,49 @@ namespace WindowsFormsApp01
             }
         }
 
+        
        
         private void btn_delete_Click(object sender, EventArgs e)
         {
+            // 1. Kiểm tra xem người dùng đã chọn sinh viên chưa
+            if (string.IsNullOrEmpty(txt_mssv.Text))
+            {
+                MessageBox.Show("Vui lòng click chọn một sinh viên trong bảng trước khi xóa!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2. Tìm sinh viên đó trong CSDL
+            var sv = db.Students.SingleOrDefault(s => s.MSSV == txt_mssv.Text);
+
+            if (sv != null)
+            {
+                // 3. Hiện hộp thoại cảnh báo trước khi xóa thật
+                DialogResult dialogResult = MessageBox.Show($"Bạn có chắc chắn muốn xóa sinh viên {sv.FullName} (MSSV: {sv.MSSV}) không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    try
+                    {
+                        // 4. Xóa cứng khỏi CSDL
+                        db.Students.DeleteOnSubmit(sv);
+                        db.SubmitChanges();
+                        MessageBox.Show("Xóa sinh viên thành công!", "Thành công");
+
+                        // 5. Làm mới form và tải lại bảng
+                        btn_clear_Click(sender, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi xóa: " + ex.Message, "Lỗi hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy sinh viên này trong cơ sở dữ liệu!", "Lỗi");
+            }
         }
-        // =========================================================
+      
 
         private void btn_clear_Click(object sender, EventArgs e)
         {
