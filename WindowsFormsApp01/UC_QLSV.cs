@@ -130,13 +130,48 @@ namespace WindowsFormsApp01
             }
         }
 
-        // =========================================================
-        // ĐỂ TRỐNG HÀM SỬA VÀ XÓA (Giữ nguyên tên hàm để không bị lỗi Form Design)
-        // =========================================================
+      
         private void btn_edit_Click(object sender, EventArgs e)
         {
+            // Kiểm tra xem đã chọn sinh viên nào để sửa chưa
+            if (string.IsNullOrEmpty(txt_mssv.Text))
+            {
+                MessageBox.Show("Vui lòng click chọn một sinh viên trong bảng trước khi sửa!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Tìm sinh viên trong CSDL dựa vào MSSV (ô MSSV lúc này đang bị khóa mờ)
+            var sv = db.Students.SingleOrDefault(s => s.MSSV == txt_mssv.Text);
+
+            if (sv != null)
+            {
+                // Ghi đè các thông tin mới từ giao diện vào biến sinh viên
+                sv.FullName = txt_name.Text;
+                sv.Gender = cboGioiTinh.Text;
+                sv.DateOfBirth = dtpNgaySinh.Value;
+                sv.ClassId = cbxLopHoc.SelectedValue?.ToString();
+
+                try
+                {
+                    // Lưu thay đổi xuống Database
+                    db.SubmitChanges();
+                    MessageBox.Show("Cập nhật thông tin sinh viên thành công!", "Thành công");
+
+                    // Dọn dẹp form và tải lại bảng cho mới
+                    btn_clear_Click(sender, e);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi cập nhật: " + ex.Message, "Lỗi hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy sinh viên này trong cơ sở dữ liệu!", "Lỗi");
+            }
         }
 
+       
         private void btn_delete_Click(object sender, EventArgs e)
         {
         }
